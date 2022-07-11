@@ -1,15 +1,20 @@
+//product 1 interface
 interface ProductChair {
   productCategory(): string;
   hasLegs(): string;
   sitOn(): string;
 }
 
+//product 2 interface
 interface ProductTable {
   hasLegs(): string;
   tableSurface(): string;
+
+  //this function will bound the product with a category
   createTableCategory(collaborator: ProductChair): string;
 }
 
+//product type 1 of type first product implementation
 class RoyalChair implements ProductChair {
   productCategory(): string {
     return "Royal";
@@ -22,6 +27,7 @@ class RoyalChair implements ProductChair {
   }
 }
 
+//product type 2 of type first product implementation
 class RFLChair implements ProductChair {
   productCategory(): string {
     return "RFL";
@@ -34,6 +40,7 @@ class RFLChair implements ProductChair {
   }
 }
 
+//product type one of type two product implementation
 class RoyalTable implements ProductTable {
   hasLegs(): string {
     return "Table has 4 round shaped legs";
@@ -46,6 +53,7 @@ class RoyalTable implements ProductTable {
   }
 }
 
+//product type two of type two product implementation
 class RFLTable implements ProductTable {
   hasLegs(): string {
     return "Table has 4 square shaped legs";
@@ -58,11 +66,13 @@ class RFLTable implements ProductTable {
   }
 }
 
+// the main factory which will create the products but does not know the product type
 interface AbstractFactory {
   createChair(): ProductChair;
   createTable(): ProductTable;
 }
 
+//type one factory implementation
 class RoyalBrandFactory implements AbstractFactory {
   createChair(): ProductChair {
     return new RoyalChair();
@@ -72,6 +82,7 @@ class RoyalBrandFactory implements AbstractFactory {
   }
 }
 
+//type two factory implementation
 class RFLBrandFactory implements AbstractFactory {
   createChair(): ProductChair {
     return new RFLChair();
@@ -81,10 +92,15 @@ class RFLBrandFactory implements AbstractFactory {
   }
 }
 
+
+//client code
 function clientCode(factory: AbstractFactory) {
+
+  //create 2 products
   const chair = factory.createChair();
   const table = factory.createTable();
 
+  //use the products
   console.log(`${chair.productCategory()}  ${chair.hasLegs()}`);
   console.log(chair.sitOn());
   console.log(`${table.createTableCategory(chair)} table`);
@@ -95,6 +111,7 @@ function clientCode(factory: AbstractFactory) {
   );
 }
 
+//test the codes
 console.log("Client: Testing client code with the first factory type...");
 clientCode(new RoyalBrandFactory());
 

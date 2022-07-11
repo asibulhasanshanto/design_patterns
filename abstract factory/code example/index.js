@@ -1,3 +1,4 @@
+//product type 1 of type first product implementation
 var RoyalChair = /** @class */ (function () {
     function RoyalChair() {
     }
@@ -12,6 +13,7 @@ var RoyalChair = /** @class */ (function () {
     };
     return RoyalChair;
 }());
+//product type 2 of type first product implementation
 var RFLChair = /** @class */ (function () {
     function RFLChair() {
     }
@@ -26,6 +28,7 @@ var RFLChair = /** @class */ (function () {
     };
     return RFLChair;
 }());
+//product type one of type two product implementation
 var RoyalTable = /** @class */ (function () {
     function RoyalTable() {
     }
@@ -40,6 +43,7 @@ var RoyalTable = /** @class */ (function () {
     };
     return RoyalTable;
 }());
+//product type two of type two product implementation
 var RFLTable = /** @class */ (function () {
     function RFLTable() {
     }
@@ -54,6 +58,7 @@ var RFLTable = /** @class */ (function () {
     };
     return RFLTable;
 }());
+//type one factory implementation
 var RoyalBrandFactory = /** @class */ (function () {
     function RoyalBrandFactory() {
     }
@@ -65,6 +70,7 @@ var RoyalBrandFactory = /** @class */ (function () {
     };
     return RoyalBrandFactory;
 }());
+//type two factory implementation
 var RFLBrandFactory = /** @class */ (function () {
     function RFLBrandFactory() {
     }
@@ -76,14 +82,18 @@ var RFLBrandFactory = /** @class */ (function () {
     };
     return RFLBrandFactory;
 }());
+//client code
 function clientCode(factory) {
+    //create 2 products
     var chair = factory.createChair();
     var table = factory.createTable();
+    //use the products
     console.log("".concat(chair.productCategory(), "  ").concat(chair.hasLegs()));
     console.log(chair.sitOn());
     console.log("".concat(table.createTableCategory(chair), " table"));
     console.log("".concat(table.createTableCategory(chair), " Category ").concat(table.hasLegs(), " and ").concat(table.tableSurface()));
 }
+//test the codes
 console.log("Client: Testing client code with the first factory type...");
 clientCode(new RoyalBrandFactory());
 console.log("\n");
